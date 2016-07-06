@@ -458,7 +458,7 @@ mysqlBeginForeignScan(ForeignScanState *node, int eflags)
 				char *err = pstrdup(_mysql_error(festate->conn));
 				ereport(ERROR,
 							(errcode(ERRCODE_FDW_UNABLE_TO_CREATE_EXECUTION),
-							errmsg("failed to prepare the MySQL query: \n%s", err)));
+							errmsg("failed to prepare the MySQL query: \nRemote Error: %s\nQuery: %s", err, festate->query)));
 			}
 			break;
 		}
